@@ -10,9 +10,11 @@ public class ThreadAssignment01Main {
 
         long startTime = System.currentTimeMillis();
 
-        
+        // PROJECT REQUIREMENTS:
+        // 
         // Write a program in Java that runs the function Solver.findAndPrintSolution() 30 times. 
         // It will do it in the following three ways:
+        //
         // 1. Sequentially: Don’t run the next instance until the one before has returned
         //
         // 2. All at once in separate threads. A new thread is created for each instance.
