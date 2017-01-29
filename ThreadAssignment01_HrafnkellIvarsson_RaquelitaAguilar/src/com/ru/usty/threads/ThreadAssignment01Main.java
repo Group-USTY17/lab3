@@ -35,10 +35,10 @@ public class ThreadAssignment01Main {
 
 	private static Runnable makeNewRunnable(final int number) {
 		return new Runnable(){
-        	@Override
-        	public void run(){
-        		System.out.println("Þráður " + number +  " keyrir");
-        	}
+			@Override
+			public void run(){
+				System.out.println("Þráður " + number +  " keyrir");
+			}
 		};
 	}
 }
