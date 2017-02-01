@@ -23,34 +23,22 @@ public class ThreadAssignment01Main {
         // (students can try different sizes). New instances aren’t run until a thread is free in the thread pool.
         
         //Solver.findAndPrintSolution(Problematic.nextProblem());
-
-        // Array with 5 instances of threads
-        Thread[] threads = new Thread[5];
         
-        for(int i = 0; i < 5; i++){
-        	threads[i] = new Thread(makeNewRunnable(i));
-        	threads[i].start(); // Keyrum alla þræði 
+        
+        for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
+        	Problem problem = Problematic.nextProblem();
+        	Thread someThread = new Thread(new SomeRunnableThing(problem));
+            someThread.start();
+        	try {
+				someThread.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
-    	try {
-    		for(int i = 0; i < 5; i++){
-    			threads[i].join(); // join-ar svo þræðina
-    		}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+        
     	
         System.out.println("All done");
         System.out.println("Total time: " + (System.currentTimeMillis() - startTime) + " ms");
     }
-
-	private static Runnable makeNewRunnable(final int number) {
-		return new Runnable(){
-			@Override
-			public void run(){
-				System.out.println("Þráður " + number +  " keyrir");
-			}
-		};
-	}
 }
