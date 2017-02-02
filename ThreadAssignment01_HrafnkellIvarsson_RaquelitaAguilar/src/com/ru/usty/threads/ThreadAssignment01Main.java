@@ -14,13 +14,13 @@ public class ThreadAssignment01Main {
         long startTime = System.currentTimeMillis();
         
         Problem problem = Problematic.nextProblem();
-   
+        
         //                             REQUIREMENT 1
         // Sequentially: Don’t run the next instance until the one before has returned
         // Run the line "findAndPrint..." NUMBER_OF_PROBLEMS times
         System.out.println("Requirement 1");
         for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
-            Solver.findAndPrintSolution(problem);
+            Solver.findAndPrintSolution(Problematic.nextProblem());
         }
         //-----------------------------------------------------------------------//
 
@@ -28,7 +28,7 @@ public class ThreadAssignment01Main {
         // All at once in separate threads. A new thread is created for each instance.
         System.out.println("Requirement 2");
         for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
-            new Thread(new SomeRunnableThing(problem)).start();
+            new Thread(new SomeRunnableThing(Problematic.nextProblem())).start();
         }
         //-----------------------------------------------------------------------//
 
@@ -36,10 +36,10 @@ public class ThreadAssignment01Main {
         // A certain number at a time
         // Threads are run through a thread pool of a certain size
         // New instances aren’t run until a thread is free in the thread pool.
-        ExecutorService threadPool = Executors.newFixedThreadPool(POOL_SIZE);
         System.out.println("Requirement 3");
+        ExecutorService threadPool = Executors.newFixedThreadPool(POOL_SIZE);
         for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
-            threadPool.execute(new SomeRunnableThing(problem));
+            threadPool.execute(new SomeRunnableThing(Problematic.nextProblem()));
         }
         threadPool.shutdown();
 
