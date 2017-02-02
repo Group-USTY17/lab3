@@ -5,7 +5,7 @@ public class ThreadAssignment01Main {
 
     private static final int NUMBER_OF_PROBLEMS = 30;
     // POOL_SIZE is the no. if threads we wish to run at a time
-    private static final int REQUIREMENT = 3; //what requirement to test
+    private static final int REQUIREMENT = 2; //what requirement to test
     private static final int POOL_SIZE = 5;
     
 
@@ -31,8 +31,14 @@ public class ThreadAssignment01Main {
         // All at once in separate threads. A new thread is created for each instance.
         if(REQUIREMENT == 2){
         	System.out.println("Requirement 2");
+        	Thread[] threads = new Thread[NUMBER_OF_PROBLEMS];
         	for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
-        		new Thread(new SomeRunnableThing(Problematic.nextProblem())).start();
+        		threads[i] = new Thread(new SomeRunnableThing(Problematic.nextProblem()));
+        		threads[i].start();
+        	}
+        	for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){ //join the threads to get running time
+        		try { threads[i].join(); }
+        		catch (InterruptedException e) { e.printStackTrace(); }
         	}
         }
         //-----------------------------------------------------------------------//
