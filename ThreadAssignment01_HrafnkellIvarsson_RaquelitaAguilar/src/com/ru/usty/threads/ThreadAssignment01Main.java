@@ -5,15 +5,15 @@ public class ThreadAssignment01Main {
 
     private static final int NUMBER_OF_PROBLEMS = 30;
     // POOL_SIZE is the no. if threads we wish to run at a time
-    private static final int POOL_SIZE = 10;
+    private static final int POOL_SIZE = 5;
+    
 
     public static void main(String[] args) {
 
     	
         System.out.println("Processors: " + Runtime.getRuntime().availableProcessors());
         long startTime = System.currentTimeMillis();
-        
-        Problem problem = Problematic.nextProblem();
+        // Problem problem = Problematic.nextProblem();
         
         //                             REQUIREMENT 1
         // Sequentially: Don’t run the next instance until the one before has returned
