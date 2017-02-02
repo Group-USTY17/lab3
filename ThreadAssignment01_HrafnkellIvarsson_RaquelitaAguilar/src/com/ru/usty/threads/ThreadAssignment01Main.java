@@ -5,16 +5,15 @@ public class ThreadAssignment01Main {
 
     private static final int NUMBER_OF_PROBLEMS = 30;
     // POOL_SIZE is the no. if threads we wish to run at a time
-    private static final int REQUIREMENT = 2; //what requirement to test
     private static final int POOL_SIZE = 5;
-    
+    private static final int REQUIREMENT = 3; //what requirement to test
 
     public static void main(String[] args) {
-
     	
         System.out.println("Processors: " + Runtime.getRuntime().availableProcessors());
         long startTime = System.currentTimeMillis();
-        // Problem problem = Problematic.nextProblem();
+        
+        //-----------------------------------------------------------------------//
         
         //                             REQUIREMENT 1
         // Sequentially: Don’t run the next instance until the one before has returned
@@ -54,21 +53,13 @@ public class ThreadAssignment01Main {
         		threadPool.execute(new SomeRunnableThing(Problematic.nextProblem()));
         	}
         	threadPool.shutdown();
+        	try{
+        		threadPool.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+        	}catch(InterruptedException e){
+        		e.printStackTrace();
+        	}
         }
         //-----------------------------------------------------------------------//
-
-
-        /*  for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
-        	    Problem problem = Problematic.nextProblem();
-        	    Thread someThread = new Thread(new SomeRunnableThing(problem));
-                someThread.start();
-        	try {
-				someThread.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }*/
 
         System.out.println("Total time: " + (System.currentTimeMillis() - startTime) + " ms");
     }
