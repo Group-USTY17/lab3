@@ -20,7 +20,7 @@ public class ThreadAssignment01Main {
         // Run the line "findAndPrint..." NUMBER_OF_PROBLEMS times
         System.out.println("Requirement 1");
         for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
-            Solver.findAndPrintSolution(Problematic.nextProblem());
+            Solver.findAndPrintSolution(problem);
         }
         //-----------------------------------------------------------------------//
 
