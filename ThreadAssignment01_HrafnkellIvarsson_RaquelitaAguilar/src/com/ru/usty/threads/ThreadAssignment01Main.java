@@ -5,7 +5,7 @@ public class ThreadAssignment01Main {
 
     private static final int NUMBER_OF_PROBLEMS = 30;
     // POOL_SIZE is the no. if threads we wish to run at a time
-    private static final int POOL_SIZE = 5;
+    private static final int POOL_SIZE = 10;
     private static final int REQUIREMENT = 3; //what requirement to test
 
     public static void main(String[] args) {

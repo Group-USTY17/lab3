@@ -13,8 +13,6 @@ public class SomeRunnableThing implements Runnable{
 	@Override
 	public void run() {
 		Solver.findAndPrintSolution(problem);
-		// long tID = Thread.currentThread().getId();
-		//System.out.println("ID: " + tID);
 	}
 	
 	public SomeRunnableThing(Problem p) {
