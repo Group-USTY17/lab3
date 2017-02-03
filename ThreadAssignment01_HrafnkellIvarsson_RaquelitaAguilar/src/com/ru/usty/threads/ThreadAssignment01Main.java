@@ -6,7 +6,7 @@ public class ThreadAssignment01Main {
     private static final int NUMBER_OF_PROBLEMS = 30;
     // POOL_SIZE is the no. if threads we wish to run at a time
     private static final int POOL_SIZE = 10;
-    private static final int REQUIREMENT = 3; //what requirement to test
+    private static final int REQUIREMENT = 0; //what requirement to test
 
     public static void main(String[] args) {
     	
@@ -18,17 +18,19 @@ public class ThreadAssignment01Main {
         //                             REQUIREMENT 1
         // Sequentially: Don’t run the next instance until the one before has returned
         // Run the line "findAndPrint..." NUMBER_OF_PROBLEMS times
-        if(REQUIREMENT == 1){
+        if(REQUIREMENT == 1 || true){
         	System.out.println("Requirement 1");
         	for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
         		Solver.findAndPrintSolution(Problematic.nextProblem());
         	}
         }
+        System.out.println("Total time: " + (System.currentTimeMillis() - startTime) + " ms");
         //-----------------------------------------------------------------------//
 
         //                              REQUIREMENT 2
         // All at once in separate threads. A new thread is created for each instance.
-        if(REQUIREMENT == 2){
+        startTime = System.currentTimeMillis();
+        if(REQUIREMENT == 2 || true){
         	System.out.println("Requirement 2");
         	Thread[] threads = new Thread[NUMBER_OF_PROBLEMS];
         	for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
@@ -40,13 +42,15 @@ public class ThreadAssignment01Main {
         		catch (InterruptedException e) { e.printStackTrace(); }
         	}
         }
+        System.out.println("Total time: " + (System.currentTimeMillis() - startTime) + " ms");
         //-----------------------------------------------------------------------//
 
         //                              REQUIREMENT 3
         // A certain number at a time
         // Threads are run through a thread pool of a certain size
         // New instances aren’t run until a thread is free in the thread pool.
-        if(REQUIREMENT == 3){
+        startTime = System.currentTimeMillis();
+        if(REQUIREMENT == 3 || true){
         	System.out.println("Requirement 3");
         	ExecutorService threadPool = Executors.newFixedThreadPool(POOL_SIZE);
         	for(int i = 0; i < NUMBER_OF_PROBLEMS; i++){
@@ -54,13 +58,12 @@ public class ThreadAssignment01Main {
         	}
         	threadPool.shutdown();
         	try{
-        		threadPool.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+        		threadPool.awaitTermination(5, TimeUnit.MINUTES);
         	}catch(InterruptedException e){
         		e.printStackTrace();
         	}
         }
-        //-----------------------------------------------------------------------//
-
         System.out.println("Total time: " + (System.currentTimeMillis() - startTime) + " ms");
+        //-----------------------------------------------------------------------//
     }
 }
